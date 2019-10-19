@@ -20,8 +20,16 @@ public class ExpressionTreeTest {
   @Test
   public void test1(){
     assertEquals(-60.12,e1.evaluate(),0.01);
-    assertEquals("((3+2)-65.12)",e1.infix());
-    assertEquals("(-(+32)65.12)",e1.schemeExpression());
+    assertEquals("( ( 3 + 2 ) - 65.12 )",e1.infix());
+    assertEquals("(- (+ 3 2) 65.12)",e1.schemeExpression());
+  }
+
+  @Test
+  public void test2(){
+    e2=new ExpressionTree("1.2 5.4 *   -4.5 + ");
+    assertEquals(1.98,e2.evaluate(),0.01);
+    assertEquals("(( 1.2 * ",e1.infix());
+
   }
 
 }

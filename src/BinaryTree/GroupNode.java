@@ -19,7 +19,9 @@ public class GroupNode implements TreeNode {
     StringBuilder result = new StringBuilder();
     result.append("(")
             .append(this.operator)
+            .append(" ")
             .append(this.left.getPreOrder())
+            .append(" ")
             .append(this.right.getPreOrder())
             .append(")");
     return result.toString();
@@ -29,9 +31,13 @@ public class GroupNode implements TreeNode {
   public String getInOrder() {
     StringBuilder result = new StringBuilder();
     result.append("(")
+            .append(" ")
             .append(this.left.getInOrder())
+            .append(" ")
             .append(this.operator)
+            .append(" ")
             .append(this.right.getInOrder())
+            .append(" ")
             .append(")");
 
     return result.toString();
