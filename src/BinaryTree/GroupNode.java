@@ -17,10 +17,11 @@ public class GroupNode implements TreeNode {
   @Override
   public String getPreOrder() {
     StringBuilder result = new StringBuilder();
-
-    result.append(this.operator)
+    result.append("(")
+            .append(this.operator)
             .append(this.left.getPreOrder())
-            .append(this.right.getPreOrder());
+            .append(this.right.getPreOrder())
+            .append(")");
     return result.toString();
   }
 

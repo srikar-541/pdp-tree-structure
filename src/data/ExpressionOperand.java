@@ -54,4 +54,13 @@ public class ExpressionOperand implements Operand {
   public Operand intersect(Operand other) {
     return null;
   }
+
+  @Override
+  public String toString() {
+    String s = this.d+"";
+    if (this.d == Math.floor(d)) {
+      return s.substring(0, s.length() - 2);
+    }
+    return s;
+  }
 }
