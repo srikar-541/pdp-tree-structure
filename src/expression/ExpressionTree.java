@@ -23,6 +23,7 @@ public class ExpressionTree implements Expression {
     if (input.length() == 0) {
       throw new IllegalArgumentException("Empty string");
     }
+    
     String[] terms = input.split(" ");
     for (String s : terms) {
       if (s.length() == 0) {
