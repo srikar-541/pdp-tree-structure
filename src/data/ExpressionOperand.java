@@ -44,4 +44,14 @@ public class ExpressionOperand implements Operand {
   public Operand modulo(Operand other) {
     return null;
   }
+
+  @Override
+  public Operand union(Operand other) {
+    return null;
+  }
+
+  @Override
+  public Operand intersect(Operand other) {
+    return null;
+  }
 }

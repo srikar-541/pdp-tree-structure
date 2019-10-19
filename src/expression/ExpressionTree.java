@@ -1,5 +1,7 @@
 package expression;
+
 import java.util.Stack;
+
 import data.ExpressionOperand;
 import data.Operand;
 import data.Operator;
@@ -44,6 +46,9 @@ public class ExpressionTree implements Expression {
         validationStack.push(new LeafNode(d));
       }
     }
+    if (validationStack.size() > 1) {
+      throw new IllegalArgumentException("Incomplete Input");
+    }
   }
 
   private boolean isOperand(String id) throws IllegalArgumentException {
@@ -74,7 +79,7 @@ public class ExpressionTree implements Expression {
 
   @Override
   public double evaluate() {
-    return ((ExpressionOperand)this.treeRoot.calculate()).getData();
+    return ((ExpressionOperand) this.treeRoot.calculate()).getData();
   }
 
   @Override
