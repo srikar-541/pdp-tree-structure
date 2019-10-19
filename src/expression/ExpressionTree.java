@@ -23,7 +23,7 @@ public class ExpressionTree implements Expression {
     if (input.length() == 0) {
       throw new IllegalArgumentException("Empty string");
     }
-    
+
     String[] terms = input.split(" ");
     for (String s : terms) {
       if (s.length() == 0) {
@@ -74,11 +74,11 @@ public class ExpressionTree implements Expression {
 
   @Override
   public String infix() {
-    return null;
+    return this.treeRoot.getInOrder();
   }
 
   @Override
   public String schemeExpression() {
-    return null;
+    return this.treeRoot.getPreOrder();
   }
 }

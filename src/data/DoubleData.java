@@ -44,4 +44,9 @@ public class DoubleData implements Operand {
   public Operand modulo(Operand other) {
     return null;
   }
+
+  @Override
+  public String toString() {
+    return this.d + "";
+  }
 }

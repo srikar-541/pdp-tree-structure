@@ -1,6 +1,5 @@
 package data;
 
-
 public interface Data {
 
   public Data add(Data other);
