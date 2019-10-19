@@ -1,17 +1,15 @@
 package expression;
-
 import java.util.Stack;
-
-import data.DoubleData;
+import data.ExpressionOperand;
 import data.Operand;
 import data.Operator;
-import generictree.ElementNode;
-import generictree.EmptyNode;
-import generictree.GenericTreeNode;
+import BinaryTree.GroupNode;
+import BinaryTree.LeafNode;
+import BinaryTree.TreeNode;
 
 public class ExpressionTree implements Expression {
-  private GenericTreeNode treeRoot;
-  private Stack<GenericTreeNode> validationStack;
+  private TreeNode treeRoot;
+  private Stack<TreeNode> validationStack;
 
   public ExpressionTree(String input) {
     validationStack = new Stack<>();
@@ -28,20 +26,23 @@ public class ExpressionTree implements Expression {
 
     String[] terms = input.split(" ");
     for (String s : terms) {
+      if (s.length() == 0) {
+        continue;
+      }
       if (isOperator(s)) {
         if (validationStack.size() < 2) {
           throw new IllegalArgumentException("Give valid input");
         } else {
-          GenericTreeNode right = validationStack.pop();
-          GenericTreeNode left = validationStack.pop();
+          TreeNode right = validationStack.pop();
+          TreeNode left = validationStack.pop();
           Operator d = new Operator(s);
-          this.treeRoot = new ElementNode(d, left, right);
+          this.treeRoot = new GroupNode(d, left, right);
+          validationStack.push(this.treeRoot);
         }
       } else if (isOperand(s)) {
-        Operand d = new DoubleData(s);
-        validationStack.push(new EmptyNode(d));
+        Operand d = new ExpressionOperand(s);
+        validationStack.push(new LeafNode(d));
       }
-      validationStack.push(this.treeRoot);
     }
   }
 
@@ -68,16 +69,16 @@ public class ExpressionTree implements Expression {
 
   @Override
   public double evaluate() {
-    return ((DoubleData)this.treeRoot.calculate()).getData();
+    return ((ExpressionOperand)this.treeRoot.calculate()).getData();
   }
 
   @Override
   public String infix() {
-    return null;
+    return this.treeRoot.getInOrder();
   }
 
   @Override
   public String schemeExpression() {
-    return null;
+    return this.treeRoot.getPreOrder();
   }
 }

@@ -32,4 +32,9 @@ public class Operator implements Data {
   public Data modulo(Data other) {
     return null;
   }
+
+  @Override
+  public String toString() {
+    return this.operator;
+  }
 }

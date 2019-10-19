@@ -2,15 +2,13 @@ package intervals;
 
 import java.util.Stack;
 
-import generictree.ElementNode;
-import generictree.EmptyNode;
-import generictree.GenericTreeNode;
+import BinaryTree.TreeNode;
 
 public class IntervalTree implements Intervals {
 
-  private GenericTreeNode treeRoot;
+  private TreeNode treeRoot;
 
-  private Stack<GenericTreeNode> validationStack;
+  private Stack<TreeNode> validationStack;
 
   private boolean isOperand(String id) throws IllegalArgumentException {
     return false;

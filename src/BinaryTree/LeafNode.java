@@ -1,22 +1,22 @@
-package generictree;
+package BinaryTree;
 
 import data.Operand;
 
-public class EmptyNode implements GenericTreeNode {
+public class LeafNode implements TreeNode {
   Operand operand;
 
-  public EmptyNode(Operand d) {
+  public LeafNode(Operand d) {
     this.operand = d;
   }
 
   @Override
   public String getPreOrder() {
-    return "";
+    return operand.toString();
   }
 
   @Override
   public String getInOrder() {
-    return "";
+    return operand.toString();
   }
 
   @Override
