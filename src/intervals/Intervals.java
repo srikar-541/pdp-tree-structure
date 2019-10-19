@@ -1,8 +1,8 @@
 package intervals;
 
 /**
- * This interface represents all operations offered on an expression
- * involving 1D intervals and binary operations on them.
+ * This interface represents all operations offered on an expression involving 1D intervals and binary operations on
+ * them.
  */
 public interface Intervals {
   /**

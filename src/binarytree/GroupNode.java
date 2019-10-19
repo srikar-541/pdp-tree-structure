@@ -1,12 +1,12 @@
-package BinaryTree;
+package binarytree;
+
 import data.Data;
 import data.Operand;
 
-
 public class GroupNode implements TreeNode {
-  private Data operator;
-  private TreeNode left;
-  private TreeNode right;
+  final private Data operator;
+  final private TreeNode left;
+  final private TreeNode right;
 
   public GroupNode(Data operator, TreeNode left, TreeNode right) {
     this.operator = operator;
@@ -17,21 +17,24 @@ public class GroupNode implements TreeNode {
   @Override
   public String getPreOrder() {
     StringBuilder result = new StringBuilder();
-
-    result.append(this.operator)
+    result.append("(")
+            .append(this.operator)
+            .append(" ")
             .append(this.left.getPreOrder())
-            .append(this.right.getPreOrder());
+            .append(" ")
+            .append(this.right.getPreOrder())
+            .append(")");
     return result.toString();
   }
 
   @Override
   public String getInOrder() {
     StringBuilder result = new StringBuilder();
-    result.append("(")
-            .append(this.left.getInOrder())
-            .append(this.operator)
+    result.append("( ")
+            .append(this.left.getInOrder() + " ")
+            .append(this.operator + " ")
             .append(this.right.getInOrder())
-            .append(")");
+            .append(" )");
 
     return result.toString();
   }
@@ -44,7 +47,7 @@ public class GroupNode implements TreeNode {
   }
 
   private Operand compute(Operand leftOperand, Operand rightOperand) {
-    
+
     switch (operator.toString()) {
       case "+":
         return leftOperand.add(rightOperand);
@@ -54,6 +57,10 @@ public class GroupNode implements TreeNode {
         return leftOperand.multiply(rightOperand);
       case "%":
         return leftOperand.modulo(rightOperand);
+      case "U":
+        return leftOperand.union(rightOperand);
+      case "I":
+        return leftOperand.intersect(rightOperand);
       default:
         return leftOperand.divide(rightOperand);
     }

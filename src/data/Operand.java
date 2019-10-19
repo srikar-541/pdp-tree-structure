@@ -1,6 +1,6 @@
 package data;
 
-public abstract interface Operand {
+public interface Operand {
 
   public Operand add(Operand other);
 
@@ -11,4 +11,8 @@ public abstract interface Operand {
   public Operand divide(Operand other);
 
   public Operand modulo(Operand other);
+
+  public Operand union(Operand other);
+
+  public Operand intersect(Operand other);
 }
