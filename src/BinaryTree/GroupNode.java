@@ -44,6 +44,7 @@ public class GroupNode implements TreeNode {
   }
 
   private Operand compute(Operand leftOperand, Operand rightOperand) {
+    
     switch (operator.toString()) {
       case "+":
         return leftOperand.add(rightOperand);
