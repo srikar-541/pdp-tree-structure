@@ -6,6 +6,7 @@ import java.util.Objects;
  * This class represents a 1-dimensional interval. The interval is
  * characterized by a start and an end, both integral values.
  */
+
 public class Interval {
   int start,end;
 

@@ -1,13 +1,14 @@
-package generictree;
+package BinaryTree;
 import data.Data;
 import data.Operand;
 
-public class ElementNode implements GenericTreeNode {
-  private Data operator;
-  private GenericTreeNode left;
-  private GenericTreeNode right;
 
-  public ElementNode(Data operator, GenericTreeNode left, GenericTreeNode right) {
+public class GroupNode implements TreeNode {
+  private Data operator;
+  private TreeNode left;
+  private TreeNode right;
+
+  public GroupNode(Data operator, TreeNode left, TreeNode right) {
     this.operator = operator;
     this.left = left;
     this.right = right;

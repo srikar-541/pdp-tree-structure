@@ -1,8 +1,8 @@
-package generictree;
+package BinaryTree;
 
 import data.Operand;
 
-public interface GenericTreeNode {
+public interface TreeNode {
 
   String getPreOrder();
 

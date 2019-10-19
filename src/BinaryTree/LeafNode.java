@@ -1,11 +1,11 @@
-package generictree;
+package BinaryTree;
 
 import data.Operand;
 
-public class EmptyNode implements GenericTreeNode {
+public class LeafNode implements TreeNode {
   Operand operand;
 
-  public EmptyNode(Operand d) {
+  public LeafNode(Operand d) {
     this.operand = d;
   }
 
