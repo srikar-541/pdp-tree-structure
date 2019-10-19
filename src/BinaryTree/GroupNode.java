@@ -44,20 +44,18 @@ public class GroupNode implements TreeNode {
   }
 
   private Operand compute(Operand leftOperand, Operand rightOperand) {
-    if (operator.toString().equals("+")) {
-      return leftOperand.add(rightOperand);
-    }
-    else if (operator.toString().equals("-")) {
-      return leftOperand.subtract(rightOperand);
-    }
-    else if (operator.toString().equals("*")) {
-      return leftOperand.multiply(rightOperand);
-    }
-    else if (operator.toString().equals("%")) {
-      return leftOperand.modulo(rightOperand);
-    }
-    else {
-      return leftOperand.divide(rightOperand);
+    
+    switch (operator.toString()) {
+      case "+":
+        return leftOperand.add(rightOperand);
+      case "-":
+        return leftOperand.subtract(rightOperand);
+      case "*":
+        return leftOperand.multiply(rightOperand);
+      case "%":
+        return leftOperand.modulo(rightOperand);
+      default:
+        return leftOperand.divide(rightOperand);
     }
   }
 }
