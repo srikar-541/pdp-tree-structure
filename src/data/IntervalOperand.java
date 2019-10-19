@@ -25,13 +25,6 @@ public class IntervalOperand implements Operand {
   }
 
   @Override
-  public Operand add(Operand other) {
-    /*Interval tempOther = ((IntervalOperand)other).getData();
-    return new IntervalOperand(this.interval.union(tempOther));*/
-    return null;
-  }
-
-  @Override
   public Operand union(Operand other) {
     Interval tempOther = ((IntervalOperand) other).getData();
     return new IntervalOperand(this.interval.union(tempOther));
@@ -44,9 +37,13 @@ public class IntervalOperand implements Operand {
   }
 
   @Override
+  public Operand add(Operand other) {
+    return null;
+  }
+
+  @Override
   public Operand subtract(Operand other) {
-    Interval tempOther = ((IntervalOperand) other).getData();
-    return new IntervalOperand(this.interval.intersect(tempOther));
+    return null;
   }
 
   @Override

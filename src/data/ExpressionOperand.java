@@ -2,42 +2,42 @@ package data;
 
 public class ExpressionOperand implements Operand {
 
-  private final Double d;
+  private final Double constant;
 
-  ExpressionOperand(Double d) {
-    this.d = d;
+  ExpressionOperand(Double constant) {
+    this.constant = constant;
   }
 
   public ExpressionOperand(String s) {
-    this.d = Double.parseDouble(s);
+    this.constant = Double.parseDouble(s);
   }
 
   public double getData() {
-    return this.d;
+    return this.constant;
   }
 
   @Override
   public Operand add(Operand other) {
     ExpressionOperand otherTemp = (ExpressionOperand) other;
-    return new ExpressionOperand(otherTemp.d + this.d);
+    return new ExpressionOperand(otherTemp.getData() + this.getData());
   }
 
   @Override
   public Operand subtract(Operand other) {
     ExpressionOperand otherTemp = (ExpressionOperand) other;
-    return new ExpressionOperand(this.d - otherTemp.d);
+    return new ExpressionOperand(this.getData() - otherTemp.getData());
   }
 
   @Override
   public Operand multiply(Operand other) {
     ExpressionOperand otherTemp = (ExpressionOperand) other;
-    return new ExpressionOperand(this.d * otherTemp.d);
+    return new ExpressionOperand(this.getData() * otherTemp.getData());
   }
 
   @Override
   public Operand divide(Operand other) {
     ExpressionOperand otherTemp = (ExpressionOperand) other;
-    return new ExpressionOperand(this.d / otherTemp.d);
+    return new ExpressionOperand(this.getData() / otherTemp.getData());
   }
 
   @Override
@@ -57,8 +57,8 @@ public class ExpressionOperand implements Operand {
 
   @Override
   public String toString() {
-    String s = this.d+"";
-    if (this.d == Math.floor(d)) {
+    String s = this.getData()+"";
+    if (this.getData() == Math.floor(this.getData())) {
       return s.substring(0, s.length() - 2);
     }
     return s;
