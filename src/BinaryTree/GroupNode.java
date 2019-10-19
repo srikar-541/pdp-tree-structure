@@ -30,15 +30,11 @@ public class GroupNode implements TreeNode {
   @Override
   public String getInOrder() {
     StringBuilder result = new StringBuilder();
-    result.append("(")
-            .append(" ")
+    result.append("( ")
+            .append(this.right.getInOrder() + " ")
+            .append(this.operator + " ")
             .append(this.left.getInOrder())
-            .append(" ")
-            .append(this.operator)
-            .append(" ")
-            .append(this.right.getInOrder())
-            .append(" ")
-            .append(")");
+            .append(" )");
 
     return result.toString();
   }
