@@ -48,7 +48,11 @@ public class ExpressionTree implements Expression {
 
   private boolean isOperand(String id) throws IllegalArgumentException {
     boolean doubleValue = false;
-    for (int i = 0; i < id.length(); i++) {
+    int i = 0;
+    if (id.charAt(0) == '-' || id.charAt(0) == '+') {
+      i = 1;
+    }
+    while (i < id.length()) {
       char c = id.charAt(i);
       if (c == '.') {
         if (doubleValue) {
@@ -58,6 +62,7 @@ public class ExpressionTree implements Expression {
       } else if (!Character.isDigit(c)) {
         throw new IllegalArgumentException("Give valid input");
       }
+      i++;
     }
     return true;
   }
