@@ -11,12 +11,12 @@ public class EmptyNode implements GenericTreeNode {
 
   @Override
   public String getPreOrder() {
-    return "";
+    return operand.toString();
   }
 
   @Override
   public String getInOrder() {
-    return "";
+    return operand.toString();
   }
 
   @Override

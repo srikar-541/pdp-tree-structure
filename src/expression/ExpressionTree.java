@@ -1,7 +1,5 @@
 package expression;
-
 import java.util.Stack;
-
 import data.DoubleData;
 import data.Operand;
 import data.Operator;
@@ -25,9 +23,12 @@ public class ExpressionTree implements Expression {
     if (input.length() == 0) {
       throw new IllegalArgumentException("Empty string");
     }
-
+    
     String[] terms = input.split(" ");
     for (String s : terms) {
+      if (s.length() == 0) {
+        continue;
+      }
       if (isOperator(s)) {
         if (validationStack.size() < 2) {
           throw new IllegalArgumentException("Give valid input");
@@ -36,12 +37,12 @@ public class ExpressionTree implements Expression {
           GenericTreeNode left = validationStack.pop();
           Operator d = new Operator(s);
           this.treeRoot = new ElementNode(d, left, right);
+          validationStack.push(this.treeRoot);
         }
       } else if (isOperand(s)) {
         Operand d = new DoubleData(s);
         validationStack.push(new EmptyNode(d));
       }
-      validationStack.push(this.treeRoot);
     }
   }
 

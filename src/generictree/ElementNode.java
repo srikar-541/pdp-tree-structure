@@ -43,16 +43,16 @@ public class ElementNode implements GenericTreeNode {
   }
 
   private Operand compute(Operand leftOperand, Operand rightOperand) {
-    if (operator.equals("+")) {
+    if (operator.toString().equals("+")) {
       return leftOperand.add(rightOperand);
     }
-    else if (operator.equals("-")) {
+    else if (operator.toString().equals("-")) {
       return leftOperand.subtract(rightOperand);
     }
-    else if (operator.equals("*")) {
+    else if (operator.toString().equals("*")) {
       return leftOperand.multiply(rightOperand);
     }
-    else if (operator.equals("%")) {
+    else if (operator.toString().equals("%")) {
       return leftOperand.modulo(rightOperand);
     }
     else {
