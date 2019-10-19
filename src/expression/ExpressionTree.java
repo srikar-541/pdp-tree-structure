@@ -5,9 +5,9 @@ import java.util.Stack;
 import data.ExpressionOperand;
 import data.Operand;
 import data.Operator;
-import BinaryTree.GroupNode;
-import BinaryTree.LeafNode;
-import BinaryTree.TreeNode;
+import binarytree.GroupNode;
+import binarytree.LeafNode;
+import binarytree.TreeNode;
 
 public class ExpressionTree implements Expression {
   private TreeNode treeRoot;

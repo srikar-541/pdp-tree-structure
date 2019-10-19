@@ -2,9 +2,9 @@ package intervals;
 
 import java.util.Stack;
 
-import BinaryTree.GroupNode;
-import BinaryTree.LeafNode;
-import BinaryTree.TreeNode;
+import binarytree.GroupNode;
+import binarytree.LeafNode;
+import binarytree.TreeNode;
 import data.IntervalOperand;
 import data.Operand;
 import data.Operator;

@@ -1,6 +1,6 @@
 package data;
 
-public abstract interface Operand {
+public interface Operand {
 
   public Operand add(Operand other);
 

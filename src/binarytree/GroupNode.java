@@ -1,12 +1,12 @@
-package BinaryTree;
+package binarytree;
 
 import data.Data;
 import data.Operand;
 
 public class GroupNode implements TreeNode {
-  private Data operator;
-  private TreeNode left;
-  private TreeNode right;
+  final private Data operator;
+  final private TreeNode left;
+  final private TreeNode right;
 
   public GroupNode(Data operator, TreeNode left, TreeNode right) {
     this.operator = operator;
@@ -31,9 +31,9 @@ public class GroupNode implements TreeNode {
   public String getInOrder() {
     StringBuilder result = new StringBuilder();
     result.append("( ")
-            .append(this.right.getInOrder() + " ")
+            .append(this.left.getInOrder() + " ")
             .append(this.operator + " ")
-            .append(this.left.getInOrder())
+            .append(this.right.getInOrder())
             .append(" )");
 
     return result.toString();

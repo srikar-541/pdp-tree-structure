@@ -2,7 +2,7 @@ package data;
 
 public class Operator implements Data {
 
-  String operator;
+  private String operator;
 
   public Operator(String op) {
     this.operator = op;
