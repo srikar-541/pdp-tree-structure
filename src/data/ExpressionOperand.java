@@ -2,63 +2,39 @@ package data;
 
 public class ExpressionOperand implements Operand {
 
-  private final Double constant;
+  private final double value;
 
-  ExpressionOperand(Double constant) {
-    this.constant = constant;
+  ExpressionOperand(double constant) {
+    this.value = constant;
   }
 
   public ExpressionOperand(String s) {
-    this.constant = Double.parseDouble(s);
+    this.value = Double.parseDouble(s);
   }
 
-  public double getData() {
-    return this.constant;
+
+  public double getValue() {
+    return this.value;
   }
 
-  @Override
-  public Operand add(Operand other) {
-    ExpressionOperand otherTemp = (ExpressionOperand) other;
-    return new ExpressionOperand(otherTemp.getData() + this.getData());
+  public ExpressionOperand add(ExpressionOperand other){
+    return new ExpressionOperand(this.value+other.value);
+  }
+  public ExpressionOperand subtract(ExpressionOperand other){
+    return new ExpressionOperand(this.value-other.value);
+  }
+  public ExpressionOperand multiply(ExpressionOperand other){
+    return new ExpressionOperand(this.value*other.value);
+  }
+  public ExpressionOperand divide(ExpressionOperand other){
+    return new ExpressionOperand(this.value/other.value);
   }
 
-  @Override
-  public Operand subtract(Operand other) {
-    ExpressionOperand otherTemp = (ExpressionOperand) other;
-    return new ExpressionOperand(this.getData() - otherTemp.getData());
-  }
-
-  @Override
-  public Operand multiply(Operand other) {
-    ExpressionOperand otherTemp = (ExpressionOperand) other;
-    return new ExpressionOperand(this.getData() * otherTemp.getData());
-  }
-
-  @Override
-  public Operand divide(Operand other) {
-    ExpressionOperand otherTemp = (ExpressionOperand) other;
-    return new ExpressionOperand(this.getData() / otherTemp.getData());
-  }
-
-  @Override
-  public Operand modulo(Operand other) {
-    return null;
-  }
-
-  @Override
-  public Operand union(Operand other) {
-    return null;
-  }
-
-  @Override
-  public Operand intersect(Operand other) {
-    return null;
-  }
 
   @Override
   public String toString() {
-    String s = this.getData()+"";
-    if (this.getData() == Math.floor(this.getData())) {
+    String s = this.getValue()+"";
+    if (this.getValue() == Math.floor(this.getValue())) {
       return s.substring(0, s.length() - 2);
     }
     return s;

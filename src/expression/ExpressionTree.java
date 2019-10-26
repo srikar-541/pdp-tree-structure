@@ -1,6 +1,7 @@
 package expression;
 
 import java.util.Stack;
+import java.util.function.BiFunction;
 
 import data.ExpressionOperand;
 import data.Operand;
@@ -37,7 +38,8 @@ public class ExpressionTree implements Expression {
         } else {
           TreeNode right = validationStack.pop();
           TreeNode left = validationStack.pop();
-          Operator d = new Operator(s);
+          BiFunction biFunction = createBiFunctionObject(s);
+          Operator d = new Operator(s, biFunction);
           this.treeRoot = new GroupNode(d, left, right);
           validationStack.push(this.treeRoot);
         }
@@ -79,7 +81,7 @@ public class ExpressionTree implements Expression {
 
   @Override
   public double evaluate() {
-    return ((ExpressionOperand) this.treeRoot.calculate()).getData();
+    return ((ExpressionOperand) this.treeRoot.calculate()).getValue();
   }
 
   @Override
@@ -90,5 +92,17 @@ public class ExpressionTree implements Expression {
   @Override
   public String schemeExpression() {
     return this.treeRoot.getPreOrder();
+  }
+
+  private BiFunction createBiFunctionObject(String op) {
+    switch (op) {
+      case "+":
+        return (BiFunction<ExpressionOperand, ExpressionOperand, ExpressionOperand>) ExpressionOperand::add;
+      case "-":
+        return (BiFunction<ExpressionOperand, ExpressionOperand, ExpressionOperand>) ExpressionOperand::subtract;
+      case "*":
+        return (BiFunction<ExpressionOperand, ExpressionOperand, ExpressionOperand>) ExpressionOperand::multiply;
+    }
+    return (BiFunction<ExpressionOperand, ExpressionOperand, ExpressionOperand>) ExpressionOperand::divide;
   }
 }

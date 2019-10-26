@@ -6,7 +6,7 @@ public class IntervalOperand implements Operand {
 
   private final Interval interval;
 
-  IntervalOperand(Interval interval) {
+  private IntervalOperand(Interval interval) {
     this.interval = interval;
   }
 
@@ -20,44 +20,19 @@ public class IntervalOperand implements Operand {
     this.interval = new Interval(from, to);
   }
 
-  public Interval getData() {
+  public Interval getValue() {
     return this.interval;
   }
 
-  @Override
-  public Operand union(Operand other) {
-    Interval tempOther = ((IntervalOperand) other).getData();
-    return new IntervalOperand(this.interval.union(tempOther));
+  public IntervalOperand union(IntervalOperand other){
+    return new IntervalOperand(interval.union(other.interval));
   }
 
-  @Override
-  public Operand intersect(Operand other) {
-    Interval tempOther = ((IntervalOperand) other).getData();
-    return new IntervalOperand(this.interval.intersect(tempOther));
+  public IntervalOperand intersect(IntervalOperand other){
+    return new IntervalOperand(interval.intersect(other.interval));
   }
-
   @Override
-  public Operand add(Operand other) {
-    return null;
-  }
-
-  @Override
-  public Operand subtract(Operand other) {
-    return null;
-  }
-
-  @Override
-  public Operand multiply(Operand other) {
-    return null;
-  }
-
-  @Override
-  public Operand divide(Operand other) {
-    return null;
-  }
-
-  @Override
-  public Operand modulo(Operand other) {
-    return null;
+  public String toString() {
+    return interval.toString();
   }
 }

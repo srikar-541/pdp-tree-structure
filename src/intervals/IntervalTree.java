@@ -1,6 +1,7 @@
 package intervals;
 
 import java.util.Stack;
+import java.util.function.BiFunction;
 
 import binarytree.GroupNode;
 import binarytree.LeafNode;
@@ -34,7 +35,8 @@ public class IntervalTree implements Intervals {
         } else {
           TreeNode right = validationStack.pop();
           TreeNode left = validationStack.pop();
-          Operator d = new Operator(s);
+          BiFunction<IntervalOperand, IntervalOperand, IntervalOperand> biFunction = createBiFunction(s);
+          Operator d = new Operator(s, biFunction);
           this.treeRoot = new GroupNode(d, left, right);
           validationStack.push(this.treeRoot);
         }
@@ -82,6 +84,20 @@ public class IntervalTree implements Intervals {
 
   @Override
   public Interval evaluate() {
-    return ((IntervalOperand) this.treeRoot.calculate()).getData();
+    IntervalOperand result= (IntervalOperand) this.treeRoot.calculate();
+    return result.getValue();
+  }
+
+  private BiFunction<IntervalOperand, IntervalOperand, IntervalOperand> createBiFunction(String op) {
+    if(op.equals("U")) {
+      return (x, y) -> {
+        return (IntervalOperand) x.union(y);
+      };
+    }
+    else {
+      return (x, y) -> {
+        return (IntervalOperand) x.intersect(y);
+      };
+    }
   }
 }
