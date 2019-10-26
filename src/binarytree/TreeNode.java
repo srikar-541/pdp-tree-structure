@@ -10,5 +10,5 @@ public interface TreeNode {
 
   Operand calculate();
 
-  void getTextTree(StringBuilder result, int operatorCount);
+  StringBuilder getTextTree(StringBuilder result, int operatorCount);
 }

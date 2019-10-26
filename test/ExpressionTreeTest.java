@@ -52,7 +52,8 @@ public class ExpressionTreeTest {
 
   @Test
   public void test4(){
-
+  e2=new ExpressionTree("1 4 6 - 5 + /");
+  System.out.println(e2.textTree());
   }
 
 }

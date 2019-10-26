@@ -96,7 +96,8 @@ public class ExpressionTree implements Expression {
 
   @Override
   public String textTree() {
-    return "";
+    StringBuilder result=new StringBuilder();
+    return treeRoot.getTextTree(result,0).toString();
   }
 
   private BiFunction createBiFunctionObject(String op) {

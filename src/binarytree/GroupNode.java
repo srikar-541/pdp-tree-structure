@@ -47,7 +47,17 @@ public class GroupNode implements TreeNode {
   }
 
   @Override
-  public void getTextTree(StringBuilder result, int operatorCount) {
-
+  public StringBuilder getTextTree(StringBuilder result, int operatorCount) {
+    result.append("   ".repeat(Math.max(0, operatorCount - 1)));
+    result.append("|\n");
+    result.append("   ".repeat(Math.max(0, operatorCount - 1)));
+    result.append("|\n");
+    result.append(this.operator.toString());
+    operatorCount=operatorCount+1;
+    result.append("   |".repeat(Math.max(0, operatorCount - 1)));
+    result.append(" ");
+    result=this.left.getTextTree(result,operatorCount);
+    result=this.right.getTextTree(result,operatorCount);
+    return  result;
   }
 }

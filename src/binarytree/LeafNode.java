@@ -25,15 +25,14 @@ public class LeafNode implements TreeNode {
   }
 
   @Override
-  public void getTextTree(StringBuilder result, int operatorCount) {
-    for (int i=0;i<operatorCount-1;i++){
-      result.append(" ");
-    }
-    result.append("|\n");
-    result.append("|\n");
-    result.append("_\n");
-    result.append("_\n");
-    result.append("_\n");
+  public StringBuilder getTextTree(StringBuilder result, int operatorCount) {
+    result.append("   |".repeat(Math.max(0, operatorCount - 1)));
+    result.append("\n");
+    result.append("   |".repeat(Math.max(0, operatorCount - 1)));
+    result.append("___");
     result.append(this.operand.toString());
+    result.append("\n");
+    return result;
   }
+
 }

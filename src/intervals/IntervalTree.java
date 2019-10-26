@@ -90,7 +90,9 @@ public class IntervalTree implements Intervals {
 
   @Override
   public String textTree() {
-    return "";
+    StringBuilder result=new StringBuilder();
+    return treeRoot.getTextTree(result,0).toString();
+
   }
 
   private BiFunction<IntervalOperand, IntervalOperand, IntervalOperand> createBiFunction(String op) {
