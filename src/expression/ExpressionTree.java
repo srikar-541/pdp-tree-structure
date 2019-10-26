@@ -15,18 +15,14 @@ public class ExpressionTree implements Expression {
   private Stack<TreeNode> validationStack;
 
   public ExpressionTree(String input) {
+    if (input == null) {
+      throw new IllegalArgumentException("Invalid data");
+    }
     validationStack = new Stack<>();
     validateInput(input.trim());
   }
 
   private void validateInput(String input) throws IllegalArgumentException {
-    if (input == null) {
-      throw new IllegalArgumentException("Give non null string.");
-    }
-    if (input.length() == 0) {
-      throw new IllegalArgumentException("Empty string");
-    }
-
     String[] terms = input.split(" ");
     for (String s : terms) {
       if (s.length() == 0) {
@@ -47,6 +43,10 @@ public class ExpressionTree implements Expression {
         Operand d = new ExpressionOperand(s);
         validationStack.push(new LeafNode(d));
       }
+    }
+    if (validationStack.size() == 1) {
+      this.treeRoot = validationStack.pop();
+      return;
     }
     if (validationStack.size() > 1) {
       throw new IllegalArgumentException("Incomplete Input");
@@ -75,13 +75,13 @@ public class ExpressionTree implements Expression {
   }
 
   private boolean isOperator(String id) {
-    return (id.equals("+") || id.equals("-") || id.equals("/")
-            || id.equals("%") || id.equals("*"));
+    return (id.equals("+") || id.equals("-") || id.equals("/") || id.equals("*"));
   }
 
   @Override
   public double evaluate() {
-    return ((ExpressionOperand) this.treeRoot.calculate()).getValue();
+    ExpressionOperand eo = ((ExpressionOperand) this.treeRoot.calculate());
+    return eo.getValue();
   }
 
   @Override
@@ -92,6 +92,11 @@ public class ExpressionTree implements Expression {
   @Override
   public String schemeExpression() {
     return this.treeRoot.getPreOrder();
+  }
+
+  @Override
+  public String textTree() {
+    return "";
   }
 
   private BiFunction createBiFunctionObject(String op) {

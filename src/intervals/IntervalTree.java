@@ -88,6 +88,11 @@ public class IntervalTree implements Intervals {
     return result.getValue();
   }
 
+  @Override
+  public String textTree() {
+    return "";
+  }
+
   private BiFunction<IntervalOperand, IntervalOperand, IntervalOperand> createBiFunction(String op) {
     if(op.equals("U")) {
       return (x, y) -> {

@@ -45,4 +45,9 @@ public class GroupNode implements TreeNode {
     Operand rightResult = this.right.calculate();
     return this.operator.evaluate(leftResult,rightResult);
   }
+
+  @Override
+  public void getTextTree(StringBuilder result, int operatorCount) {
+
+  }
 }

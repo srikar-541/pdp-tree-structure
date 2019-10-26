@@ -21,5 +21,9 @@ public class Operator  {
     return this.operator;
   }
 
-
+  public void getTextTree(StringBuilder result, int operatorCount) {
+    for (int i=0;i<3*operatorCount;i++){
+      result.append(" ");
+    }
+  }
 }

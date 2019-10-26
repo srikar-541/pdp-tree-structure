@@ -22,8 +22,10 @@ public class IntervalTreeTest {
 
   @Test
   public void test1(){
-    Interval expexted=new Interval(1,5);
-    assertEquals(expexted,i1.evaluate());
+    Interval expected=new Interval(1,5);
+    assertEquals(expected,i1.evaluate());
+    i1 = new IntervalTree("1,2 3,4 4,6 U 3,5 I U");
+    System.out.printf("jds");
   }
 
 }
