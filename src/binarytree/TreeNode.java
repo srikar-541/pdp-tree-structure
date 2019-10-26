@@ -9,4 +9,6 @@ public interface TreeNode {
   String getInOrder();
 
   Operand calculate();
+
+  void getTextTree(StringBuilder result, int operatorCount);
 }
