@@ -28,7 +28,6 @@ public class LeafNode implements TreeNode {
   public StringBuilder getTextTree(StringBuilder result, int operatorCount) {
     result.append("   |".repeat(Math.max(0, operatorCount - 1)));
     if(operatorCount-1!=0) { result.append("\n");}
-
     result.append("   |".repeat(Math.max(0, operatorCount - 1)));
     result.append("___");
     result.append(this.operand.toString());

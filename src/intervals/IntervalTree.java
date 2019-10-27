@@ -1,8 +1,8 @@
 package intervals;
 
-import java.util.Stack;
 import java.util.function.BiFunction;
 
+import abstraction.AbstractTree;
 import binarytree.GroupNode;
 import binarytree.LeafNode;
 import binarytree.TreeNode;
@@ -10,16 +10,10 @@ import data.IntervalOperand;
 import data.Operand;
 import data.Operator;
 
-public class IntervalTree implements Intervals {
-
-  private TreeNode treeRoot;
-  private Stack<TreeNode> validationStack;
+public class IntervalTree extends AbstractTree implements Intervals {
 
   public IntervalTree(String input) {
-    if (input == null) {
-      throw new IllegalArgumentException("Invalid data");
-    }
-    validationStack = new Stack<>();
+    super(input);
     validateInput(input.trim());
   }
 
@@ -50,7 +44,8 @@ public class IntervalTree implements Intervals {
     }
   }
 
-  private boolean isOperand(String id) throws IllegalArgumentException {
+  @Override
+  protected boolean isOperand(String id) throws IllegalArgumentException {
     if (!id.contains(",")) {
       throw new IllegalArgumentException("Invalid data");
     }
@@ -78,7 +73,7 @@ public class IntervalTree implements Intervals {
     }
   }
 
-  private boolean isOperator(String id) {
+  protected boolean isOperator(String id) {
     return (id.equals("U") || id.equals("I"));
   }
 
@@ -88,14 +83,7 @@ public class IntervalTree implements Intervals {
     return result.getValue();
   }
 
-  @Override
-  public String textTree() {
-    StringBuilder result=new StringBuilder();
-    return treeRoot.getTextTree(result,0).toString();
-
-  }
-
-  private BiFunction<IntervalOperand, IntervalOperand, IntervalOperand> createBiFunction(String op) {
+  protected BiFunction<IntervalOperand, IntervalOperand, IntervalOperand> createBiFunction(String op) {
     if(op.equals("U")) {
       return (x, y) -> {
         return (IntervalOperand) x.union(y);

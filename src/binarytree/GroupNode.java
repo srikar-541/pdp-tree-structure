@@ -50,10 +50,7 @@ public class GroupNode implements TreeNode {
   public StringBuilder getTextTree(StringBuilder result, int operatorCount) {
     if (operatorCount==0){
       result.append(this.operator.toString());
-
       result.append("\n|\n|\n|");
-//      result.append("   |".repeat(Math.max(0, operatorCount)));
-//      result.append("\n");
     }
     else {
       result.append("   ".repeat(Math.max(0, operatorCount - 1)));
@@ -62,7 +59,6 @@ public class GroupNode implements TreeNode {
       result.append("|___");
       result.append(this.operator.toString());
       result.append('\n');
-
       result.append("   |".repeat(Math.max(0, operatorCount)));
       result.append("\n");
     }

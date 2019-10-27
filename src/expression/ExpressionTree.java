@@ -3,6 +3,7 @@ package expression;
 import java.util.Stack;
 import java.util.function.BiFunction;
 
+import abstraction.AbstractTree;
 import data.ExpressionOperand;
 import data.Operand;
 import data.Operator;
@@ -10,15 +11,10 @@ import binarytree.GroupNode;
 import binarytree.LeafNode;
 import binarytree.TreeNode;
 
-public class ExpressionTree implements Expression {
-  private TreeNode treeRoot;
-  private Stack<TreeNode> validationStack;
+public class ExpressionTree extends AbstractTree implements Expression {
 
   public ExpressionTree(String input) {
-    if (input == null) {
-      throw new IllegalArgumentException("Invalid data");
-    }
-    validationStack = new Stack<>();
+    super(input);
     validateInput(input.trim());
   }
 
@@ -40,20 +36,14 @@ public class ExpressionTree implements Expression {
           validationStack.push(this.treeRoot);
         }
       } else if (isOperand(s)) {
-        Operand d = new ExpressionOperand(s);
-        validationStack.push(new LeafNode(d));
+        validationStack.push(new LeafNode(new ExpressionOperand(s)));
       }
     }
-    if (validationStack.size() == 1) {
-      this.treeRoot = validationStack.pop();
-      return;
-    }
-    if (validationStack.size() > 1) {
-      throw new IllegalArgumentException("Incomplete Input");
-    }
+    isInvalidAfterParsing();
   }
 
-  private boolean isOperand(String id) throws IllegalArgumentException {
+  @Override
+  protected boolean isOperand(String id) throws IllegalArgumentException {
     boolean doubleValue = false;
     int i = 0;
     if (id.charAt(0) == '-' || id.charAt(0) == '+') {
@@ -74,7 +64,7 @@ public class ExpressionTree implements Expression {
     return true;
   }
 
-  private boolean isOperator(String id) {
+  protected boolean isOperator(String id) {
     return (id.equals("+") || id.equals("-") || id.equals("/") || id.equals("*"));
   }
 
@@ -85,30 +75,19 @@ public class ExpressionTree implements Expression {
   }
 
   @Override
-  public String infix() {
-    return this.treeRoot.getInOrder();
-  }
-
-  @Override
   public String schemeExpression() {
     return this.treeRoot.getPreOrder();
   }
 
-  @Override
-  public String textTree() {
-    StringBuilder result=new StringBuilder();
-    return treeRoot.getTextTree(result,0).toString();
-  }
-
-  private BiFunction createBiFunctionObject(String op) {
+  protected BiFunction<ExpressionOperand, ExpressionOperand, ExpressionOperand> createBiFunctionObject(String op) {
     switch (op) {
       case "+":
-        return (BiFunction<ExpressionOperand, ExpressionOperand, ExpressionOperand>) ExpressionOperand::add;
+        return ExpressionOperand::add;
       case "-":
-        return (BiFunction<ExpressionOperand, ExpressionOperand, ExpressionOperand>) ExpressionOperand::subtract;
+        return ExpressionOperand::subtract;
       case "*":
-        return (BiFunction<ExpressionOperand, ExpressionOperand, ExpressionOperand>) ExpressionOperand::multiply;
+        return ExpressionOperand::multiply;
     }
-    return (BiFunction<ExpressionOperand, ExpressionOperand, ExpressionOperand>) ExpressionOperand::divide;
+    return ExpressionOperand::divide;
   }
 }
