@@ -20,7 +20,7 @@ public class ExpressionTreeTest {
   @Test
   public void test1(){
     assertEquals(-60.12,e1.evaluate(),0.01);
-    assertEquals("( ( 3 + 2 ) - 65.12 )",e1.infix());
+    assertEquals("( ( 3 + 2 ) - 65.12 )", e1.infix());
     assertEquals("(- (+ 3 2) 65.12)",e1.schemeExpression());
   }
 
@@ -34,7 +34,7 @@ public class ExpressionTreeTest {
 
   @Test (expected = IllegalArgumentException.class)
   public void testEmpty(){
-    e2=new ExpressionTree("");
+    e2 = new ExpressionTree("");
   }
 
   @Test ( expected = IllegalArgumentException.class)
@@ -55,5 +55,4 @@ public class ExpressionTreeTest {
   e2=new ExpressionTree("1 4 6 - 5 + /");
   System.out.println(e2.textTree());
   }
-
 }

@@ -24,17 +24,16 @@ public class IntervalOperand implements Operand {
     return this.interval;
   }
 
-  public IntervalOperand union(IntervalOperand other){
-    return new IntervalOperand(interval.union(other.interval));
+  public IntervalOperand union(IntervalOperand other) {
+    return new IntervalOperand(this.interval.union(other.interval));
   }
 
-  public IntervalOperand intersect(IntervalOperand other){
-    return new IntervalOperand(interval.intersect(other.interval));
+  public IntervalOperand intersect(IntervalOperand other) {
+    return new IntervalOperand(this.interval.intersect(other.interval));
   }
+
   @Override
   public String toString() {
     return interval.toString();
   }
-
-
 }

@@ -1,20 +1,20 @@
 package intervals;
 
 /**
- * This interface represents all operations offered on an expression
- * involving 1D intervals and binary operations on them.
+ * This interface represents all operations offered on an expression involving 1D intervals and
+ * binary operations on them.
  */
 public interface Intervals {
   /**
    * Evaluate this expression of intervals and return the resulting interval.
+   *
    * @return the result as an Interval object
    */
   Interval evaluate();
 
   /**
-   * Returns a string that is the textual representation of the tree
-   * structure. For example, the expression "(1,2) (3,4) U" will be formatted
-   * as a string:
+   * Returns a string that is the textual representation of the tree structure. For example, the
+   * expression "(1,2) (3,4) U" will be formatted as a string:
    * <pre>
    *   U
    *   |
@@ -23,9 +23,8 @@ public interface Intervals {
    *   |
    *   |___3,4
    * </pre>
-   *
-   * The expression "(1,2) (3,4) (4,6) U (3,5) I U will be formatted as a
-   * string:
+   * <p>
+   * The expression "(1,2) (3,4) (4,6) U (3,5) I U will be formatted as a string:
    * <pre>
    *   U
    *   |
@@ -44,7 +43,7 @@ public interface Intervals {
    *       |
    *       |___3,5
    *
-   *</pre>
+   * </pre>
    * Specifically:
    * <ul>
    *   <li>The first operand always begins three lines down and three
@@ -59,6 +58,7 @@ public interface Intervals {
    *   <li>Operators and operands are represented by their respective
    *   symbols (U,I) and start,end respectively.</li>
    * </ul>
+   *
    * @return a string in the above format
    */
   String textTree();

@@ -33,5 +33,4 @@ public class IntervalTreeTest {
     i2=new IntervalTree("1,2 3,4 4,6 U 3,5 I U");
     System.out.println(i2.textTree());
   }
-
 }
