@@ -1,7 +1,5 @@
 package intervals;
-
 import java.util.function.BiFunction;
-
 import abstraction.AbstractTree;
 import data.IntervalOperand;
 import data.Operand;
@@ -9,7 +7,7 @@ import data.Operand;
 public class IntervalTree extends AbstractTree implements Intervals {
 
   public IntervalTree(String input) {
-    super(input.trim());
+    super(input);
   }
 
   @Override

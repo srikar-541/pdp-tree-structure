@@ -1,13 +1,9 @@
-
 import org.junit.Before;
 import org.junit.Test;
-
 import intervals.Interval;
 import intervals.IntervalTree;
 import intervals.Intervals;
-
 import static org.junit.Assert.*;
-
 public class IntervalTreeTest {
 
   Intervals i1;

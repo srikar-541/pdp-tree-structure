@@ -9,7 +9,7 @@ import data.Operand;
 public class ExpressionTree extends AbstractTree implements Expression {
 
   public ExpressionTree(String input) {
-    super(input.trim());
+    super(input);
   }
 
   @Override

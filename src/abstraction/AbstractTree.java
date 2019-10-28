@@ -15,10 +15,14 @@ public abstract class AbstractTree {
 
   protected AbstractTree(String input) {
     validationStack = new Stack<>();
-    if (input == null || input.length() == 0) {
+    if (input == null) {
       throw new IllegalArgumentException("Illegal Arugmnets");
     }
-    validateInput(input);
+    input = input.trim();
+    if (input.length() == 0) {
+      throw new IllegalArgumentException("Illegal Arugmnets");
+    }
+    validateInput(input.trim());
   }
 
   public String textTree() {
