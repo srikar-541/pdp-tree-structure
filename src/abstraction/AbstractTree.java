@@ -9,7 +9,7 @@ import binarytree.TreeNode;
 import data.Operand;
 import data.Operator;
 
-public abstract class AbstractTree {
+abstract class AbstractTree {
   protected TreeNode treeRoot;
   private Stack<TreeNode> validationStack;
 
