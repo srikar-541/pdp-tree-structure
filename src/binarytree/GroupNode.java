@@ -1,8 +1,6 @@
 package binarytree;
-
 import data.Operand;
 import data.Operator;
-
 public class GroupNode implements TreeNode {
   final private Operator operator;
   final private TreeNode left;
@@ -41,22 +39,24 @@ public class GroupNode implements TreeNode {
   }
 
   @Override
-  public void getTextTree(StringBuilder result, int operatorCount) {
-    if (operatorCount == 0) {
+  public void getTextTree(StringBuilder result,StringBuilder common, int operatorCount, boolean left) {
+    if(operatorCount==0){
       result.append(this.operator.toString());
-      result.append("\n|\n|\n|");
-    } else {
-      result.append("   ".repeat(Math.max(0, operatorCount - 1)));
-      result.append("|\n");
-      result.append("   ".repeat(Math.max(0, operatorCount - 1)));
-      result.append("|___");
-      result.append(this.operator.toString());
-      result.append('\n');
-      result.append("   |".repeat(Math.max(0, operatorCount)));
-      result.append("\n");
+      result.append("\n|");
+    }
+    if (operatorCount==1){
+      result.append("\n|\n|");
+      common.append("|");
+    }
+    if (operatorCount>1)
+    {
+      result.append(common);
     }
     operatorCount = operatorCount + 1;
-    this.left.getTextTree(result, operatorCount);
-    this.right.getTextTree(result, operatorCount);
+    this.left.getTextTree(result,common, operatorCount,false);
+    this.right.getTextTree(result, common,operatorCount,true);
+
+
+
   }
 }
