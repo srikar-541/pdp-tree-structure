@@ -65,4 +65,8 @@ public class ExpressionTree extends AbstractTree implements Expression {
     }
     return ExpressionOperand::divide;
   }
+
+  public String infix() {
+    return this.treeRoot.getInOrder();
+  }
 }
