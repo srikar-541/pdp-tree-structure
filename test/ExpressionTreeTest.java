@@ -1,14 +1,14 @@
 import org.junit.Before;
 import org.junit.Test;
+
 import expression.Expression;
 import expression.ExpressionTree;
+
 import static org.junit.Assert.*;
 
 public class ExpressionTreeTest {
   Expression e1;
   Expression e2;
-  Expression e3;
-  Expression e4;
 
   @Before
   public void setUp() {
@@ -54,12 +54,12 @@ public class ExpressionTreeTest {
     System.out.println(e2.textTree());
   }
 
-  @Test (expected = IllegalArgumentException.class)
-  public void test5(){
-    e2=new ExpressionTree(null);
+  @Test(expected = IllegalArgumentException.class)
+  public void test5() {
+    e2 = new ExpressionTree(null);
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void test6() {
     e2 = new ExpressionTree("  ");
   }
@@ -182,5 +182,90 @@ public class ExpressionTreeTest {
     s = s.replace("_", "");
     s = s.replace("\n", "");
     assertEquals("/1.02.0", s);
+
+    e2 = new ExpressionTree("5 3 + 7 4 + * 8 4 / 3 3 * + /");
+    s = e2.textTree();
+    s = s.replace("|", "");
+    s = s.replace(" ", "");
+    s = s.replace("_", "");
+    s = s.replace("\n", "");
+    assertEquals("/*+5.03.0+7.04.0+/8.04.0*3.03.0", s);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void test22() {
+    e2 = new ExpressionTree("a + b");
+    e2 = new ExpressionTree("ab+");
+    e2 = new ExpressionTree("1 + 2");
+    e2 = new ExpressionTree("#");
+    e2 = new ExpressionTree("*");
+  }
+
+  @Test
+  public void test23() {
+    e2 = new ExpressionTree("10");
+    String s = e2.textTree();
+    s = s.replace("\n", "");
+    s = s.replace("_", "");
+    s = s.replace("|", "");
+    assertEquals("10.0", s);
+    assertEquals("10.0", e2.infix());
+    assertEquals(10.0, e2.evaluate(), 0.0001);
+    assertEquals("10.0", e2.schemeExpression());
+
+    e2 = new ExpressionTree("0");
+    s = e2.textTree();
+    s = s.replace("\n", "");
+    s = s.replace("_", "");
+    s = s.replace("|", "");
+    assertEquals("0.0", s);
+    assertEquals("0.0", e2.infix());
+    assertEquals(0.0, e2.evaluate(), 0.0001);
+    assertEquals("0.0", e2.schemeExpression());
+
+    e2 = new ExpressionTree("3 3 - 0 /");
+    s = e2.textTree();
+    s = s.replace("\n", "");
+    s = s.replace("_", "");
+    s = s.replace("|", "");
+    s = s.replace(" ", "");
+    assertEquals("/-3.03.00.0", s);
+    assertEquals("( ( 3.0 - 3.0 ) / 0.0 )", e2.infix());
+    assertEquals(Double.NaN, e2.evaluate(), 0.0001);
+    assertEquals("(/ (- 3.0 3.0) 0.0)", e2.schemeExpression());
+
+    e2 = new ExpressionTree("0 0 - 0 * 0 + ");
+    s = e2.textTree();
+    s = s.replace("\n", "");
+    s = s.replace("_", "");
+    s = s.replace("|", "");
+    s = s.replace(" ", "");
+    assertEquals("+*-0.00.00.00.0", s);
+    assertEquals("( ( ( 0.0 - 0.0 ) * 0.0 ) + 0.0 )", e2.infix());
+    assertEquals(0.0, e2.evaluate(), 0.0001);
+    assertEquals("(+ (* (- 0.0 0.0) 0.0) 0.0)", e2.schemeExpression());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void test24() {
+    e2 = new ExpressionTree("3 4 * /");
+    e2 = new ExpressionTree("3 -4");
+    e2 = new ExpressionTree("3 -");
+    e2 = new ExpressionTree("2 + 3 4 5 - - 6 + 8 *");
+    e2 = new ExpressionTree("3 4   + 5 *");
+  }
+
+  @Test
+  public void test25() {
+    e2 = new ExpressionTree("4.5 4.5         -");
+    assertEquals(0.0, e2.evaluate(), 0.000001);
+    e2 = new ExpressionTree("2 3 + 7 - 0 / ");
+    assertEquals(Double.NEGATIVE_INFINITY, e2.evaluate(), 0.01);
+    e2 = new ExpressionTree("6 2 3 + 2 3 + - / ");
+    assertEquals(Double.POSITIVE_INFINITY, e2.evaluate(), 0.01);
+    e2 = new ExpressionTree("-2 0 / ");
+    assertEquals(Double.NEGATIVE_INFINITY, e2.evaluate(), 0.01);
+    e2 = new ExpressionTree("2 3 4 5 6 + - * /");
+    assertEquals(-0.095, e2.evaluate(), 0.2);
   }
 }
