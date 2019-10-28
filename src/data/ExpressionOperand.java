@@ -34,10 +34,6 @@ public class ExpressionOperand implements Operand {
 
   @Override
   public String toString() {
-    String s = this.getValue() + "";
-    if (this.getValue() == Math.floor(this.getValue())) {
-      return s.substring(0, s.length() - 2);
-    }
-    return s;
+    return this.getValue() + "";
   }
 }
