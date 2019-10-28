@@ -16,21 +16,19 @@ public class IntervalTreeTest {
   Intervals i4;
 
   @Before
-  public void setUp(){
-    i1=new IntervalTree("1,4 2,5 U");
+  public void setUp() {
+    i1 = new IntervalTree("1,4 2,5 U");
   }
 
   @Test
-  public void test1(){
-    Interval expected=new Interval(1,5);
-    assertEquals(expected,i1.evaluate());
+  public void test1() {
+    Interval expected = new Interval(1, 5);
+    assertEquals(expected, i1.evaluate());
     i1 = new IntervalTree("1,2 3,4 4,6 U 3,5 I U");
-    System.out.printf("jds");
   }
 
   @Test
-  public void test2(){
-    i2=new IntervalTree("1,2 3,4 4,6 U 3,5 I U");
-    System.out.println(i2.textTree());
+  public void test2() {
+    i2 = new IntervalTree("1,2 3,4 4,6 U 3,5 I U");
   }
 }
