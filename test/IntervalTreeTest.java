@@ -9,9 +9,6 @@ public class IntervalTreeTest {
   Intervals i;
   Intervals i1;
   Intervals i2;
-  Intervals i3;
-  Intervals i4;
-  Intervals tree;
 
   @Before
   public void setUp() {
@@ -89,8 +86,8 @@ public class IntervalTreeTest {
 
   @Test
   public void test14() {
-    tree = new IntervalTree("1,3 3,5 I");
-    System.out.println(tree.evaluate());
+    i = new IntervalTree("1,3 3,5 I");
+    System.out.println(i.evaluate());
     i1 = new IntervalTree("1,2 1,2 I");
     System.out.println(i1.evaluate());
     i1 = new IntervalTree("1,2 1,2 U");
@@ -99,32 +96,37 @@ public class IntervalTreeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void test15() {
-    tree = new IntervalTree("1,3 3,5");
-    tree = new IntervalTree("2,3 + 3,6 4,8 5,7 U I 6,8 I 8,9 U");
+    i = new IntervalTree("1,3 3,5");
+    i = new IntervalTree("2,3 + 3,6 4,8 5,7 U I 6,8 I 8,9 U");
   }
 
   @Test
   public void test16() {
-    tree = new IntervalTree("-2147483648,1 3,2147483647 U");
-    assertEquals(new Interval(-2147483648,2147483647), tree.evaluate());
-    tree = new IntervalTree("-2147483648,1 3,2147483647 U");
-    assertEquals(new Interval(-2147483648,2147483647), tree.evaluate());
-    tree = new IntervalTree("-2147483648,-2147483648 -2147483648,-2147483648 I");
-    assertEquals(new Interval(-2147483648,-2147483648), tree.evaluate());
+    i = new IntervalTree("-2147483648,1 3,2147483647 U");
+    assertEquals(new Interval(-2147483648,2147483647), i.evaluate());
+    i = new IntervalTree("-2147483648,1 3,2147483647 U");
+    assertEquals(new Interval(-2147483648,2147483647), i.evaluate());
+    i = new IntervalTree("-2147483648,-2147483648 -2147483648,-2147483648 I");
+    assertEquals(new Interval(-2147483648,-2147483648), i.evaluate());
     i = new IntervalTree("-2147483648,-2147483648 -2147483648,-2147483648 U");
-    assertEquals(new Interval(-2147483648,-2147483648), tree.evaluate());
+    assertEquals(new Interval(-2147483648,-2147483648), i.evaluate());
     i = new IntervalTree("3,10 5,12 U 4,4 I");
-    assertEquals(new Interval(-2147483648,-2147483648), tree.evaluate());
+    assertEquals(new Interval(4,4), i.evaluate());
   }
 
   @Test
   public void test12() {
     i = new IntervalTree("1,4 2,5 I");
+    assertEquals(new Interval(2,4), i.evaluate());
     i = new IntervalTree(" -2147483648,1 3,2147483647 U");
+    assertEquals(new Interval(-2147483648,2147483647), i.evaluate());
     i = new IntervalTree("1,3 4,8 I 3,18 U 1,2 9,10 I  7,10 U I");
+    assertEquals(new Interval(-2147483648,10), i.evaluate());
     i = new IntervalTree("1,4 2,8 I 3,6 4,20 I I");
+    assertEquals(new Interval(4,4), i.evaluate());
     i = new IntervalTree("-4,4 2,5 U  -1,4 I ");
+    assertEquals(new Interval(-1,4), i.evaluate());
     i = new IntervalTree("3,7 2,6 4,10 I U");
-    i = new IntervalTree("1,4 2,5 I");
+    assertEquals(new Interval(3, 7), i.evaluate());
   }
 }

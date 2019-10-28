@@ -7,8 +7,6 @@ import static org.junit.Assert.*;
 public class ExpressionTreeTest {
   Expression e1;
   Expression e2;
-  Expression e3;
-  Expression e4;
 
   @Before
   public void setUp() {
@@ -182,5 +180,13 @@ public class ExpressionTreeTest {
     s = s.replace("_", "");
     s = s.replace("\n", "");
     assertEquals("/1.02.0", s);
+
+    e2 = new ExpressionTree("5 3 + 7 4 + * 8 4 / 3 3 * + /");
+    s = e2.textTree();
+    s = s.replace("|", "");
+    s = s.replace(" ", "");
+    s = s.replace("_", "");
+    s = s.replace("\n", "");
+    assertEquals("/*+5.03.0+7.04.0+/8.04.0*3.03.0", s);
   }
 }
