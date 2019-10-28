@@ -23,4 +23,17 @@ public class LeafNode implements TreeNode {
   public Operand calculate() {
     return this.operand;
   }
+
+  @Override
+  public void getTextTree(StringBuilder result, int operatorCount) {
+    result.append("   |".repeat(Math.max(0, operatorCount - 1)));
+    if (operatorCount - 1 != 0) {
+      result.append("\n");
+    }
+    result.append("   |".repeat(Math.max(0, operatorCount - 1)));
+    result.append("___");
+    result.append(this.operand.toString());
+    result.append("\n");
+  }
+
 }

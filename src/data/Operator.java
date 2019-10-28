@@ -1,36 +1,19 @@
 package data;
 
-public class Operator implements Data {
+import java.util.function.BiFunction;
+
+public class Operator {
 
   private String operator;
+  private BiFunction biFunction;
 
-  public Operator(String op) {
-    this.operator = op;
+  public Operator(String operator, BiFunction converter) {
+    this.operator = operator;
+    this.biFunction = converter;
   }
 
-  @Override
-  public Data add(Data other) {
-    return null;
-  }
-
-  @Override
-  public Data subtract(Data other) {
-    return null;
-  }
-
-  @Override
-  public Data multiply(Data other) {
-    return null;
-  }
-
-  @Override
-  public Data divide(Data other) {
-    return null;
-  }
-
-  @Override
-  public Data modulo(Data other) {
-    return null;
+  public Operand evaluate(Operand first, Operand second) {
+    return (Operand) biFunction.apply(first, second);
   }
 
   @Override

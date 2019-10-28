@@ -3,12 +3,11 @@ package intervals;
 import java.util.Objects;
 
 /**
- * This class represents a 1-dimensional interval. The interval is characterized by a start and an end, both integral
- * values.
+ * This class represents a 1-dimensional interval. The interval is characterized by a start and an
+ * end, both integral values.
  */
-
 public class Interval {
-  int start, end;
+  private int start, end;
 
   /**
    * Construct an interval given its start and end values.
@@ -26,9 +25,9 @@ public class Interval {
   }
 
   /**
-   * Compute and return an interval that represents the intersection of this and another interval. The intersection is
-   * defined as the smallest interval that overlaps with both intervals. If no intersection exists, return an interval
-   * with equal and very low start and end values.
+   * Compute and return an interval that represents the intersection of this and another interval.
+   * The intersection is defined as the smallest interval that overlaps with both intervals. If no
+   * intersection exists, return an interval with equal and very low start and end values.
    *
    * @param other the other interval
    * @return the interval that is the intersection of this and the other interval
@@ -43,8 +42,8 @@ public class Interval {
   }
 
   /**
-   * Computes and returns the union of this and another interval. The union is defined as the smallest interval that
-   * both intervals overlap with.
+   * Computes and returns the union of this and another interval. The union is defined as the
+   * smallest interval that both intervals overlap with.
    *
    * @param other the other interval
    * @return the union of the two intervals
@@ -64,8 +63,8 @@ public class Interval {
   }
 
   /**
-   * Sameness test for two intervals. Two intervals are deemed to be equal to each other if their start and end values
-   * coincide.
+   * Sameness test for two intervals. Two intervals are deemed to be equal to each other if their
+   * start and end values coincide.
    *
    * @param other the other object to be tested for equality
    * @return true if the two intervals are equal, false otherwise
@@ -79,6 +78,7 @@ public class Interval {
     if (!(other instanceof Interval)) {
       return false;
     }
+
     Interval otherInterval = (Interval) other;
     return this.start == otherInterval.start && this.end == otherInterval.end;
   }

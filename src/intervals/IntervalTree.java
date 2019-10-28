@@ -1,87 +1,68 @@
 package intervals;
 
-import java.util.Stack;
+import java.util.function.BiFunction;
 
-import binarytree.GroupNode;
-import binarytree.LeafNode;
-import binarytree.TreeNode;
+import abstraction.AbstractTree;
 import data.IntervalOperand;
 import data.Operand;
-import data.Operator;
 
-public class IntervalTree implements Intervals {
-
-  private TreeNode treeRoot;
-  private Stack<TreeNode> validationStack;
+public class IntervalTree extends AbstractTree implements Intervals {
 
   public IntervalTree(String input) {
-    if (input == null) {
-      throw new IllegalArgumentException("Invalid data");
-    }
-    validationStack = new Stack<>();
-    validateInput(input.trim());
+    super(input.trim());
   }
 
-  private void validateInput(String input) throws IllegalArgumentException {
-    String[] terms = input.split(" ");
-    for (String s : terms) {
-      if (s.length() == 0) {
-        continue;
-      }
-      if (isOperator(s)) {
-        if (validationStack.size() < 2) {
-          throw new IllegalArgumentException("Give valid input");
-        } else {
-          TreeNode right = validationStack.pop();
-          TreeNode left = validationStack.pop();
-          Operator d = new Operator(s);
-          this.treeRoot = new GroupNode(d, left, right);
-          validationStack.push(this.treeRoot);
-        }
-      } else if (isOperand(s)) {
-        Operand d = new IntervalOperand(s);
-        validationStack.push(new LeafNode(d));
-      }
-    }
-    if (validationStack.size() > 1) {
-      throw new IllegalArgumentException("Incomplete Input");
+  @Override
+  protected Operand createOperand(String identifier) {
+    return new IntervalOperand(identifier);
+  }
+
+  @Override
+  protected BiFunction<IntervalOperand, IntervalOperand,
+          IntervalOperand> createBiFunctionObject(String identifier) {
+    if (identifier.equals("U")) {
+      return IntervalOperand::union;
+    } else {
+      return IntervalOperand::intersect;
     }
   }
 
-  private boolean isOperand(String id) throws IllegalArgumentException {
-    if (!id.contains(",")) {
-      throw new IllegalArgumentException("Invalid data");
+  @Override
+  protected boolean isOperand(String identifier) throws IllegalArgumentException {
+    if (!identifier.contains(",")) {
+      throw new IllegalArgumentException("Illegal arguments");
     }
-    String[] iList = id.split(",");
+    String[] iList = identifier.split(",");
     for (int i = 0; i < iList.length; i++) {
       checkValidInteger(iList[i]);
     }
     return true;
   }
 
-  private void checkValidInteger(String id) {
-    if (id.contains(".")) {
-      throw new IllegalArgumentException("da");
+  private void checkValidInteger(String identifier) {
+    if (identifier.contains(".")) {
+      throw new IllegalArgumentException("Illegal arguments");
     }
     int i = 0;
-    if (id.charAt(0) == '-' || id.charAt(0) == '+') {
+    if (identifier.charAt(0) == '-' || identifier.charAt(0) == '+') {
       i = 1;
     }
-    while (i < id.length()) {
-      char c = id.charAt(i);
+    while (i < identifier.length()) {
+      char c = identifier.charAt(i);
       if (!Character.isDigit(c)) {
-        throw new IllegalArgumentException("Illegal");
+        throw new IllegalArgumentException("Illegal arguments");
       }
       i++;
     }
   }
 
-  private boolean isOperator(String id) {
-    return (id.equals("U") || id.equals("I"));
+  protected boolean isOperator(String identifier) {
+    return (identifier.equals("U") || identifier.equals("I"));
   }
 
   @Override
   public Interval evaluate() {
-    return ((IntervalOperand) this.treeRoot.calculate()).getData();
+    IntervalOperand result = (IntervalOperand) this.treeRoot.calculate();
+    return result.getValue();
   }
 }
