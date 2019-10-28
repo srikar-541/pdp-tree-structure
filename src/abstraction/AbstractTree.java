@@ -27,7 +27,7 @@ public abstract class AbstractTree {
 
   public String textTree() {
     StringBuilder result = new StringBuilder();
-    treeRoot.getTextTree(result, 0,true);
+    treeRoot.getTextTree(result, 0);
     return result.toString();
   }
 

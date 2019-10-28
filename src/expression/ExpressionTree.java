@@ -1,7 +1,5 @@
 package expression;
-
 import java.util.function.BiFunction;
-
 import abstraction.AbstractTree;
 import data.ExpressionOperand;
 import data.Operand;
