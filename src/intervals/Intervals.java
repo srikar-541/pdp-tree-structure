@@ -15,17 +15,13 @@ public interface Intervals {
   /**
    * Returns a string that is the textual representation of the tree structure. For example, the
    * expression "(1,2) (3,4) U" will be formatted as a string:
-   * <pre>
    *   U
    *   |
    *   |
    *   |___1,2
    *   |
    *   |___3,4
-   * </pre>
-   * <p>
    * The expression "(1,2) (3,4) (4,6) U (3,5) I U will be formatted as a string:
-   * <pre>
    *   U
    *   |
    *   |
@@ -42,8 +38,6 @@ public interface Intervals {
    *       |   |___4,6
    *       |
    *       |___3,5
-   *
-   * </pre>
    * Specifically:
    * <ul>
    *   <li>The first operand always begins three lines down and three

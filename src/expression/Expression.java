@@ -29,17 +29,13 @@ public interface Expression {
   /**
    * Returns a string that is the textual representation of the tree structure. For example, the
    * expression "1 2 +" will be formatted as a string:
-   * <pre>
    *   +
    *   |
    *   |
    *   |___1.0
    *   |
    *   |___2.0
-   * </pre>
-   * <p>
    * The expression "1 4 6 - 5 + / will be formatted as a string:
-   * <pre>
    *   /
    *   |
    *   |
@@ -56,8 +52,6 @@ public interface Expression {
    *       |   |___6.0
    *       |
    *       |___5.0
-   *
-   * </pre>
    * Specifically:
    * <ul>
    *   <li>The first operand always begins three lines down and three
